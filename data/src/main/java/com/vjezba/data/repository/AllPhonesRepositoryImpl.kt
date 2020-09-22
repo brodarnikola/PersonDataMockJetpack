@@ -41,9 +41,15 @@ class AllPhonesRepositoryImpl  constructor(
     }
 
     override suspend fun addNewPhone(newPhone: AllPhones): Long {
-        val newPhoneDb = AllPhonesDb( newPhone.name, newPhone.operater, newPhone.userId)
+        val newPhoneDb = AllPhonesDb( 0, newPhone.name, newPhone.operater, newPhone.userId)
         return allPhones.insertNewPhone(newPhoneDb)
     }
+
+    override suspend fun deletePhone(phone: AllPhones) {
+        val newPhoneDb = AllPhonesDb( phone.phoneId, phone.name, phone.operater, phone.userId)
+        return allPhones.deletePhone(newPhoneDb)
+    }
+
 
     /*override fun getAllPersons() : LiveData<List<AllPersons>> {
         return allPersons.getPersons().map {dbMapper.mapDbAllPersonsToDomainPersons(it)}

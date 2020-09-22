@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import com.vjezba.domain.model.AllPhones
 import com.vjezba.persondatamockjetpack.databinding.FragmentRoomDisplayAllPhoneBinding
 import com.vjezba.persondatamockjetpack.ui.adapters.AllPhonesAdapter
 import com.vjezba.persondatamockjetpack.viewmodels.RoomDisplayAllPhonesViewModel
@@ -52,7 +53,7 @@ class RoomDisplayAllPhoneFragment : Fragment() {
         activity?.toolbar?.title = "Room all phones from user"
 
         val adapter =
-            AllPhonesAdapter()
+            AllPhonesAdapter( { phone: AllPhones -> setDeletePhoneClickListener(phone) } )
         binding.phonesList.adapter = adapter
         subscribeUi(adapter)
 
@@ -74,6 +75,10 @@ class RoomDisplayAllPhoneFragment : Fragment() {
                 )
             }
         }
+    }
+
+    private fun setDeletePhoneClickListener(phone: AllPhones) {
+        viewModel.deleteSelectedPhone(phone)
     }
 
     private fun subscribeUi(adapter: AllPhonesAdapter) {

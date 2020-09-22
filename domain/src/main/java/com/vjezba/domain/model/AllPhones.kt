@@ -18,7 +18,7 @@ package com.vjezba.domain.model
 
 
 data class AllPhones(
-    /*var phoneId: Int,*/
+    var phoneId: Int,
     var name: String,
     var operater: String,
     var userId: Int

@@ -28,7 +28,7 @@ import com.vjezba.persondatamockjetpack.databinding.ListItemRoomDisplayAllPhones
 /**
  * Adapter for the [RecyclerView] in [PlantListFragment].
  */
-class AllPhonesAdapter : ListAdapter<AllPhones, RecyclerView.ViewHolder>(PhonetDiffCallback()) {
+class AllPhonesAdapter( val clickListener: (AllPhones) -> Unit) : ListAdapter<AllPhones, RecyclerView.ViewHolder>(PhonetDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return LanguageViewHolder(
@@ -41,8 +41,8 @@ class AllPhonesAdapter : ListAdapter<AllPhones, RecyclerView.ViewHolder>(PhonetD
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val plant = getItem(position)
-        (holder as LanguageViewHolder).bind(plant)
+        val phone = getItem(position)
+        (holder as LanguageViewHolder).bind(phone, clickListener)
     }
 
     class LanguageViewHolder(
@@ -64,8 +64,11 @@ class AllPhonesAdapter : ListAdapter<AllPhones, RecyclerView.ViewHolder>(PhonetD
             //view.findNavController().navigate(direction)
         }
 
-        fun bind(item: AllPhones) {
+        fun bind(item: AllPhones, clickListener: (AllPhones) -> Unit) {
             binding.apply {
+                binding.ivDeletePhone.setOnClickListener {
+                    clickListener( item )
+                }
                 phone = item
                 executePendingBindings()
             }

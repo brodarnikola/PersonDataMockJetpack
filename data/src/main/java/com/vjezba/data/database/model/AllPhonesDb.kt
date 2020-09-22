@@ -25,15 +25,15 @@ import androidx.room.*
     indices = [Index("userId")]
     )
 data class AllPhonesDb(
-    //@PrimaryKey @ColumnInfo(name = "id") val phoneId: Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "phoneId") var phoneId: Int,
     var phone: String,
     var operater: String,
     var userId: Int = 0
 ) {
 
-    @PrimaryKey(autoGenerate = true)
+    /*@PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "phoneId")
-    var phoneId: Int = 0
+    var phoneId: Int = 0*/
 
 
 }

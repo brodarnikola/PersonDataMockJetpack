@@ -66,7 +66,7 @@ class DbMapperImpl : DbMapper {
         return phones.map {
             with(it) {
                 AllPhones(
-                    /*userId,*/
+                    phoneId,
                     phone,
                     operater,
                     userId

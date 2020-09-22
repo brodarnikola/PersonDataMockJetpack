@@ -18,12 +18,10 @@ package com.vjezba.data.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.vjezba.data.database.model.AllPersonDb
 import com.vjezba.data.database.model.AllPhonesDb
-import com.vjezba.domain.model.AllPhones
 
 /**
  * The Data Access Object for the Plant class.
@@ -58,6 +56,9 @@ interface AllPhonesDao {
 
     @Insert
     suspend fun insertNewPhone(phone: AllPhonesDb): Long
+
+    @Delete
+    suspend fun deletePhone(phone: AllPhonesDb)
 
 
 }

@@ -16,15 +16,14 @@ class RoomDisplayAllPhonesViewModel internal constructor(
     val allPhones =
         allPhonesRepo.getAllPhones(personId)
 
-    suspend fun addNewPhone( /*lastPersonID: Int,*/ name: String, operater: String, userId: Int /*, address: String*/ ) : Long {
-        //val finalLastPersonID = lastPersonID + 1
-        val newUser = AllPhones(name, operater, userId)
+    suspend fun addNewPhone(  name: String, operater: String, userId: Int ) : Long {
+        val newUser = AllPhones(0 , name, operater, userId)
         return allPhonesRepo.addNewPhone(newUser)
     }
 
-    fun deleteSelectedProgrammingLanguage(languagedId: Int) {
+    fun deleteSelectedPhone(phone: AllPhones) {
         viewModelScope.launch {
-            //savedLanguages.deleteSelectedProgrammingLanguage(languagedId)
+            allPhonesRepo.deletePhone(phone)
         }
     }
 
