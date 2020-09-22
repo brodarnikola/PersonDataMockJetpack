@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.vjezba.persondatamockjetpack.R
 import com.vjezba.persondatamockjetpack.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -31,10 +33,12 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        btnIncreaseNumber.setOnClickListener {
+        btnMockApi.setOnClickListener {
         }
 
-        btnChooseLanguage.setOnClickListener {
+        btnRoom.setOnClickListener {
+            //val direction = ActionHom.actionViewPagerFragmentToLanguageDetailsFragment(language.languageId)
+            //findNavController().navigate(direction)
         }
 
     }

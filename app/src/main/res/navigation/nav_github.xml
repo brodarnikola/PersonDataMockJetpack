@@ -10,15 +10,15 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
 
-        <!--<action
-            android:id="@+id/action_view_pager_fragment_to_language_details_fragment"
-            app:destination="@id/language_details_fragment"
+       <action
+            android:id="@+id/home_fragment_to_room_display_all_users_fragment"
+            app:destination="@id/room_display_all_users_fragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
-        <action
+        <!-- <action
             android:id="@+id/action_view_pager_fragment_to_slideshow_fragment"
             app:destination="@id/paggin_with_network_and_db"
             app:enterAnim="@anim/slide_in_right"
@@ -33,6 +33,14 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />-->
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/room_display_all_users_fragment"
+        android:name="com.vjezba.persondatamockjetpack.ui.fragments.RoomDisplayAllUsersFragment"
+        android:label="Room all users"
+        tools:layout="@layout/fragment_room_display_all_users">
 
     </fragment>
 
