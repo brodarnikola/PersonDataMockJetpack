@@ -28,7 +28,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.vjezba.persondatamockjetpack.R
 import com.vjezba.persondatamockjetpack.databinding.FragmentAddPersonBinding
-import com.vjezba.persondatamockjetpack.viewmodels.PersonAddViewModel
+import com.vjezba.persondatamockjetpack.viewmodels.RoomPersonAddViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_room_person_details.*
 import kotlinx.coroutines.Dispatchers
@@ -43,7 +43,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class RoomAddPersonFragment : Fragment() {
 
 
-    private val personAddViewModel : PersonAddViewModel by viewModel()
+    private val roomPersonAddViewModel : RoomPersonAddViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,7 +57,7 @@ class RoomAddPersonFragment : Fragment() {
             container,
             false
         ).apply {
-            viewModel = personAddViewModel
+            viewModel = roomPersonAddViewModel
 
             lifecycleOwner = this@RoomAddPersonFragment
 
@@ -76,8 +76,8 @@ class RoomAddPersonFragment : Fragment() {
 
     private fun addNewUser() {
         lifecycleScope.launch(Dispatchers.IO) {
-            val lastPersonID = personAddViewModel.findLastUserId()
-            val numberOfUpdateRows = personAddViewModel.addNewUser(
+            val lastPersonID = roomPersonAddViewModel.findLastUserId()
+            val numberOfUpdateRows = roomPersonAddViewModel.addNewUser(
                 lastPersonID.toInt(),
                 etName.text.toString(),
                 etDescription.text.toString(),

@@ -22,7 +22,7 @@
         <import type="com.vjezba.domain.model.AllPersons"/>
         <variable
             name="viewModel"
-            type="com.vjezba.persondatamockjetpack.viewmodels.PersonDetailsViewModel" />
+            type="com.vjezba.persondatamockjetpack.viewmodels.RoomPersonDetailsViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

@@ -24,20 +24,27 @@ import com.vjezba.domain.repository.RoomDisplayAllUsersRepository
 import kotlinx.coroutines.launch
 
 
-class PersonDetailsViewModel(
-    val roomDisplayAllUsersRepository: RoomDisplayAllUsersRepository,
-    personId: Int
+class RoomPersonAddViewModel(
+    val roomDisplayAllUsersRepository: RoomDisplayAllUsersRepository
 ) : ViewModel() {
 
-    //val isSavedLanguage = savedLanguagesRepository.isLanguageSaved(languagesId)
-    val personDetails = roomDisplayAllUsersRepository.getPersonDetails(personId)
+    suspend fun findLastUserId() : Long {
+        return roomDisplayAllUsersRepository.findLastUserId()
+    }
 
-    suspend fun updateChangeUserDetails(personId: Int, name: String, description: String, address: String ) : Int {
+    suspend fun addNewUser(lastPersonID: Int, name: String, description: String, address: String ) : Long {
+        val finalLastPersonID = lastPersonID + 1
+        val newUser = AllPersons(finalLastPersonID, name, description, address)
+        return roomDisplayAllUsersRepository.addNewUser(newUser)
+    }
+
+
+   /* suspend fun updateChangeUserDetails(personId: Int, name: String, description: String, address: String ) : Int {
         return roomDisplayAllUsersRepository.changeUpdatePersonDetails(personId, name, description, address)
     }
 
     suspend fun deleteUser(personId: Int) : Int {
         return roomDisplayAllUsersRepository.deleteUser(personId)
-    }
+    }*/
 
 }
