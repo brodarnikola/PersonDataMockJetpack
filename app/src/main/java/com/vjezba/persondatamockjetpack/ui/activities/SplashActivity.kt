@@ -1,8 +1,9 @@
-package com.vjezba.persondatamockjetpack
+package com.vjezba.persondatamockjetpack.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.vjezba.persondatamockjetpack.R
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {

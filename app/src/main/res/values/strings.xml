@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PersonDataMockJetpack</string>
+
+
+    <string name="menu_home">Home Fragment</string>
+    <string name="home_title">Home screen</string>
+
 </resources>
