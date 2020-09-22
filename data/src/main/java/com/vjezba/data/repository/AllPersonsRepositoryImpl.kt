@@ -51,7 +51,19 @@ private  val dbMapper: DbMapper)
     }*/
 
     override fun getAllPersons() : LiveData<List<AllPersons>> {
-        return allPersons.getPersons().map {dbMapper.mapDbAllPersonsToDomainPerson(it)}
+        return allPersons.getPersons().map {dbMapper.mapDbAllPersonsToDomainPersons(it)}
+    }
+
+    override fun getPersonDetails(personId: Int): LiveData<AllPersons> {
+        return allPersons.getPersonById(personId).map {dbMapper.mapDbPersonToDomainPerson(it)}
+    }
+
+    override suspend fun changeUpdatePersonDetails(personId: Int, name: String, description: String, address: String) : Int {
+       return allPersons.updateChangePersonDetails(personId, name, description, address) //.map {dbMapper.mapDbPersonToDomainPerson(it)}
+    }
+
+    override suspend fun deleteUser(personId: Int): Int {
+        return allPersons.deleteUser(personId)
     }
 
 }

@@ -42,6 +42,35 @@
         android:label="Room all users"
         tools:layout="@layout/fragment_room_display_all_users">
 
+        <action
+            android:id="@+id/all_users_fragment_to_user_details_fragment"
+            app:destination="@id/room_user_details_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/room_user_details_fragment"
+        android:name="com.vjezba.persondatamockjetpack.ui.fragments.RoomPersonDetailsFragment"
+        android:label="Room details user"
+        tools:layout="@layout/fragment_room_person_details">
+
+        <argument
+            android:name="personId"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/user_details_fragment_to_all_users_fragment"
+            app:destination="@id/room_display_all_users_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
     </fragment>
 
     <!--<fragment

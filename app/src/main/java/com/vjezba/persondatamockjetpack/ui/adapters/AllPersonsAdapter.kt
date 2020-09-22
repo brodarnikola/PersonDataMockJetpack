@@ -25,6 +25,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.vjezba.domain.model.AllPersons
 import com.vjezba.persondatamockjetpack.databinding.ListItemRoomDisplayAllUsersBinding
+import com.vjezba.persondatamockjetpack.ui.fragments.HomeFirstFragmentDirections
+import com.vjezba.persondatamockjetpack.ui.fragments.RoomDisplayAllUsersFragmentDirections
 
 /**
  * Adapter for the [RecyclerView] in [PlantListFragment].
@@ -61,8 +63,8 @@ class AllPersonsAdapter : ListAdapter<AllPersons, RecyclerView.ViewHolder>(Plant
             person: AllPersons,
             view: View
         ) {
-            //val direction = HomeViewPagerFragmentDirections.actionViewPagerFragmentToLanguageDetailsFragment(person.personId)
-           // view.findNavController().navigate(direction)
+            val direction = RoomDisplayAllUsersFragmentDirections.allUsersFragmentToUserDetailsFragment(person.personId)
+            view.findNavController().navigate(direction)
         }
 
         fun bind(item: AllPersons) {
