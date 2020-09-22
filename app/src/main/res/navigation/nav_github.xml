@@ -50,6 +50,22 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
+        <action
+            android:id="@+id/all_users_fragment_to_new_user_fragment"
+            app:destination="@id/room_new_user_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/room_new_user_fragment"
+        android:name="com.vjezba.persondatamockjetpack.ui.fragments.RoomAddPersonFragment"
+        android:label="Room new user"
+        tools:layout="@layout/fragment_add_person">
+
     </fragment>
 
 

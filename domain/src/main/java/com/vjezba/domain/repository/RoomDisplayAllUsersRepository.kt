@@ -13,4 +13,9 @@ interface RoomDisplayAllUsersRepository {
 
     suspend fun deleteUser(personId: Int) : Int
 
+
+    suspend fun findLastUserId() : Long
+
+    suspend fun addNewUser(newUser: AllPersons) : Long
+
 }

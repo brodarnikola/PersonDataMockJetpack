@@ -18,8 +18,15 @@ package com.vjezba.domain.model
 
 
 data class AllPersons(
-    val personId: Int,
-    val name: String,
-    val description: String,
-    val address: String = ""
-)
+    var personId: Int,
+    var name: String,
+    var description: String,
+    var address: String = ""
+) {
+    constructor(name: String, description: String, address: String) : this( 0, name, description, address) {
+        this.name = name
+        this.description = description
+        this.address = address
+    }
+
+}
