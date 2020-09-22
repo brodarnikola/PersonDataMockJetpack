@@ -4,7 +4,6 @@ import com.vjezba.data.database.AppDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
-private const val WEATHER_DB = "programing-domainLanguages-database"
 
 val databaseModule = module {
   

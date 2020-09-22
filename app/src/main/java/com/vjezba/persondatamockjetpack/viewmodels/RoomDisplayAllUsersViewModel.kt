@@ -6,7 +6,7 @@ import com.vjezba.domain.repository.RoomDisplayAllUsersRepository
 import kotlinx.coroutines.launch
 
 class RoomDisplayAllUsersViewModel internal constructor(
-    val allPersonsRepo: RoomDisplayAllUsersRepository
+    allPersonsRepo: RoomDisplayAllUsersRepository
 ) : ViewModel() {
     val allPersons =
         allPersonsRepo.getAllPersons()

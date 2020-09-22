@@ -74,7 +74,12 @@ class RoomDisplayAllUsersFragment : Fragment() {
 
     private fun subscribeUi(adapter: AllPersonsAdapter) {
         viewModel.allPersons.observe(viewLifecycleOwner,  Observer { plants ->
-            adapter.submitList(plants)
+            if( plants.isNotEmpty() ) {
+                adapter.submitList(plants)
+            }
+            else {
+
+            }
         })
     }
 

@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.vjezba.persondatamockjetpack.R
-import com.vjezba.persondatamockjetpack.databinding.FragmentHomeBinding
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.vjezba.persondatamockjetpack.databinding.FragmentHomeFirstBinding
+import kotlinx.android.synthetic.main.fragment_home_first.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class HomeFragment : Fragment() {
+class HomeFirstFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -21,7 +21,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val binding = FragmentHomeFirstBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
         activity?.toolbar?.title = getString(R.string.home_title)
@@ -37,8 +37,8 @@ class HomeFragment : Fragment() {
         }
 
         btnRoom.setOnClickListener {
-            //val direction = ActionHom.actionViewPagerFragmentToLanguageDetailsFragment(language.languageId)
-            //findNavController().navigate(direction)
+            val direction = HomeFirstFragmentDirections.homeFragmentToRoomDisplayAllUsersFragment()
+            findNavController().navigate(direction)
         }
 
     }

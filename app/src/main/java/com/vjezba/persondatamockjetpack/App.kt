@@ -23,9 +23,7 @@ class App : Application() {
         super.onCreate()
         instance = this
 
-        val appModules = listOf(presentationModule)
-        //val interactionModules = listOf(interactionModule)
-        val dataModules = listOf(networkingModule, repositoryModule, databaseModule)
+
 
         startKoin {
             androidContext(this@App)
@@ -33,7 +31,12 @@ class App : Application() {
               modules(appModules + dataModules)
             //modules(appModules + interactionModules + dataModules)
         }
+
     }
 
 }
 
+
+val appModules = listOf(presentationModule)
+//val interactionModules = listOf(interactionModule)
+val dataModules = listOf(networkingModule, repositoryModule, databaseModule)

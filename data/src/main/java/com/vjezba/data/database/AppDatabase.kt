@@ -32,7 +32,7 @@ import com.vjezba.data.database.model.AllPersonDb
 /**
  * The Room database for this app
  */
-@Database(entities = [AllPersonDb::class], version = 3, exportSchema = false)
+@Database(entities = [AllPersonDb::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun allPersonDao(): AllPersonsDao
