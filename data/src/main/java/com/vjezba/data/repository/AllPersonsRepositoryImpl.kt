@@ -51,7 +51,11 @@ private  val dbMapper: DbMapper)
     }*/
 
     override fun getAllPersons() : LiveData<List<AllPersons>> {
-        return allPersons.getPersons().map {dbMapper.mapDbAllPersonsToDomainPerson(it)}
+        return allPersons.getPersons().map {dbMapper.mapDbAllPersonsToDomainPersons(it)}
+    }
+
+    override fun getPersonDetails(personId: Int): LiveData<AllPersons> {
+        return allPersons.getPersonById(personId).map {dbMapper.mapDbPersonToDomainPerson(it)}
     }
 
 }

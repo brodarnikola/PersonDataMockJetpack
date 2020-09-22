@@ -37,7 +37,7 @@ import com.vjezba.domain.model.*
 class DbMapperImpl : DbMapper {
 
 
-    override fun mapDbAllPersonsToDomainPerson(persons: List<AllPersonDb>): List<AllPersons> {
+    override fun mapDbAllPersonsToDomainPersons(persons: List<AllPersonDb>): List<AllPersons> {
         return persons.map {
             with(it) {
                 AllPersons(
@@ -47,6 +47,17 @@ class DbMapperImpl : DbMapper {
                     address
                 )
             }
+        }
+    }
+
+    override fun mapDbPersonToDomainPerson(persons: AllPersonDb): AllPersons {
+        return with(persons) {
+            AllPersons(
+                personId,
+                name,
+                description,
+                address
+            )
         }
     }
 

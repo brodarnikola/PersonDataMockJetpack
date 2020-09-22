@@ -22,9 +22,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.vjezba.persondatamockjetpack.R
 import com.vjezba.persondatamockjetpack.databinding.FragmentRoomDisplayAllUsersBinding
 import com.vjezba.persondatamockjetpack.ui.adapters.AllPersonsAdapter
 import com.vjezba.persondatamockjetpack.viewmodels.RoomDisplayAllUsersViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RoomDisplayAllUsersFragment : Fragment() {
@@ -40,37 +42,15 @@ class RoomDisplayAllUsersFragment : Fragment() {
         val binding = FragmentRoomDisplayAllUsersBinding.inflate(inflater, container, false)
         context ?: return binding.root
 
+        activity?.toolbar?.title = "Room display all users"
+
         val adapter =
             AllPersonsAdapter()
         binding.personsList.adapter = adapter
         subscribeUi(adapter)
 
-        setHasOptionsMenu(true)
         return binding.root
     }
-
-    /*override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_language_list, menu)
-        with(viewModel) {
-            if (isFiltered()) {
-                menu.get(0).title = getString(R.string.menu_filter_none)
-                menuItemFinal = menu[0]
-            } else {
-                menu.get(0).title = getString(R.string.menu_filter_by_language)
-                menuItemFinal = menu[0]
-            }
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.filter_zone -> {
-                updateData()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }*/
 
     private fun subscribeUi(adapter: AllPersonsAdapter) {
         viewModel.allPersons.observe(viewLifecycleOwner,  Observer { plants ->
@@ -83,15 +63,4 @@ class RoomDisplayAllUsersFragment : Fragment() {
         })
     }
 
-    /*private fun updateData() {
-        with(viewModel) {
-            if (isFiltered()) {
-                clearFilterForMobileProgrammingLanguages()
-                menuItemFinal?.title = getString(R.string.menu_filter_by_language)
-            } else {
-                setOnlyMobileProgrammingLanguages("Mobile")
-                menuItemFinal?.title = getString(R.string.menu_filter_none)
-            }
-        }
-    }*/
 }

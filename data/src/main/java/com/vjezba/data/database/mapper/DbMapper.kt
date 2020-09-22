@@ -5,5 +5,7 @@ import com.vjezba.domain.model.*
 
 interface DbMapper {
 
-    fun mapDbAllPersonsToDomainPerson(persons: List<AllPersonDb>): List<AllPersons>
+    fun mapDbAllPersonsToDomainPersons(persons: List<AllPersonDb>): List<AllPersons>
+
+    fun mapDbPersonToDomainPerson(persons: AllPersonDb): AllPersons
 }

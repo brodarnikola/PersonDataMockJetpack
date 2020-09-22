@@ -7,4 +7,6 @@ interface RoomDisplayAllUsersRepository {
 
     fun getAllPersons() : LiveData<List<AllPersons>>
 
+    fun getPersonDetails(personId: Int) : LiveData<AllPersons>
+
 }
