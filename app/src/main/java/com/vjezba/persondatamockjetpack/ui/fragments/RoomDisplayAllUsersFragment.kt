@@ -23,7 +23,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.vjezba.persondatamockjetpack.R
 import com.vjezba.persondatamockjetpack.databinding.FragmentRoomDisplayAllUsersBinding
 import com.vjezba.persondatamockjetpack.ui.adapters.AllPersonsAdapter
 import com.vjezba.persondatamockjetpack.viewmodels.RoomDisplayAllUsersViewModel
@@ -48,7 +47,7 @@ class RoomDisplayAllUsersFragment : Fragment() {
 
         val adapter =
             AllPersonsAdapter()
-        binding.personsList.adapter = adapter
+        binding.personList.adapter = adapter
         subscribeUi(adapter)
 
         return binding.root
@@ -69,12 +68,12 @@ class RoomDisplayAllUsersFragment : Fragment() {
     private fun subscribeUi(adapter: AllPersonsAdapter) {
         viewModel.allPersons.observe(viewLifecycleOwner,  Observer { plants ->
             if( plants.isNotEmpty() ) {
-                persons_list.visibility = View.VISIBLE
+                person_list.visibility = View.VISIBLE
                 tvNoUserSaved.visibility = View.GONE
                 adapter.submitList(plants)
             }
             else {
-                persons_list.visibility = View.GONE
+                person_list.visibility = View.GONE
                 tvNoUserSaved.visibility = View.VISIBLE
             }
         })

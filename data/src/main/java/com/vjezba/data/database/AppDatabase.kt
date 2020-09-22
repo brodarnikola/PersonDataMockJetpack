@@ -27,15 +27,19 @@ import androidx.work.WorkManager
 import com.vjezba.androidjetpackgithub.workers.SeedDatabaseWorker
 import com.vjezba.data.DATABASE_NAME
 import com.vjezba.data.database.dao.AllPersonsDao
+import com.vjezba.data.database.dao.AllPhonesDao
 import com.vjezba.data.database.model.AllPersonDb
+import com.vjezba.data.database.model.AllPhonesDb
+import com.vjezba.domain.model.AllPhones
 
 /**
  * The Room database for this app
  */
-@Database(entities = [AllPersonDb::class], version = 1, exportSchema = false)
+@Database(entities = [AllPersonDb::class, AllPhonesDb::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun allPersonDao(): AllPersonsDao
+    abstract fun allPhonesDao(): AllPhonesDao
 
     companion object {
 

@@ -22,16 +22,19 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.vjezba.data.database.model.AllPersonDb
+import com.vjezba.data.database.model.AllPhonesDb
+import com.vjezba.domain.model.AllPhones
 
 /**
  * The Data Access Object for the Plant class.
  */
 @Dao
-interface AllPersonsDao {
-    @Query("SELECT * FROM persons ORDER BY id")
-    fun getPersons(): LiveData<List<AllPersonDb>>
+interface AllPhonesDao {
+    @Query("SELECT * FROM phones WHERE userId = :personId ORDER BY phoneId")
+    fun getPhones(personId: Int): LiveData<List<AllPhonesDb>>
 
-    @Query("SELECT * FROM persons WHERE id = :personId")
+
+    /*@Query("SELECT * FROM persons WHERE id = :personId")
     fun getPersonById(personId: Int): LiveData<AllPersonDb>
 
     @Query("UPDATE persons SET name = :name, description = :description, address = :address  WHERE id = :personId")
@@ -45,9 +48,16 @@ interface AllPersonsDao {
     suspend fun insertAll(users: List<AllPersonDb>)
 
 
+
     @Query("SELECT id FROM persons ORDER BY id DESC LIMIT 1")
     fun getLastPersonId(): Long
 
     @Insert
-    suspend fun insertNewUser(user: AllPersonDb): Long
+    suspend fun insertNewUser(user: AllPersonDb): Long*/
+
+
+    @Insert
+    suspend fun insertNewPhone(phone: AllPhonesDb): Long
+
+
 }

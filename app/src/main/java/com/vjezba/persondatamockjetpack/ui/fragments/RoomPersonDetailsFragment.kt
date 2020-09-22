@@ -88,6 +88,12 @@ class RoomPersonDetailsFragment : Fragment(), DeleteUser {
                 (requireActivity() as MainActivity).supportFragmentManager,
                 "")
         }
+
+        fabAddNewPhone.setOnClickListener {
+            val direction =
+                RoomPersonDetailsFragmentDirections.userDetailsFragmentToAllPhonesFragment(args.personId)
+            findNavController().navigate(direction)
+        }
     }
 
     private fun updateChangeUserData() {

@@ -19,22 +19,20 @@ package com.vjezba.persondatamockjetpack.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.vjezba.domain.model.AllPersons
-import com.vjezba.persondatamockjetpack.databinding.ListItemRoomDisplayAllUsersBinding
-import com.vjezba.persondatamockjetpack.ui.fragments.RoomDisplayAllUsersFragmentDirections
+import com.vjezba.domain.model.AllPhones
+import com.vjezba.persondatamockjetpack.databinding.ListItemRoomDisplayAllPhonesBinding
 
 /**
  * Adapter for the [RecyclerView] in [PlantListFragment].
  */
-class AllPersonsAdapter : ListAdapter<AllPersons, RecyclerView.ViewHolder>(PersonDiffCallback()) {
+class AllPhonesAdapter : ListAdapter<AllPhones, RecyclerView.ViewHolder>(PhonetDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return LanguageViewHolder(
-            ListItemRoomDisplayAllUsersBinding.inflate(
+            ListItemRoomDisplayAllPhonesBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -48,40 +46,40 @@ class AllPersonsAdapter : ListAdapter<AllPersons, RecyclerView.ViewHolder>(Perso
     }
 
     class LanguageViewHolder(
-        private val binding: ListItemRoomDisplayAllUsersBinding
+        private val binding: ListItemRoomDisplayAllPhonesBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListenerLanguages {
-                binding.person?.let { language ->
+                binding.phone?.let { language ->
                     navigateToLanguage(language, it)
                 }
             }
         }
 
         private fun navigateToLanguage(
-            person: AllPersons,
+            person: AllPhones,
             view: View
         ) {
-            val direction = RoomDisplayAllUsersFragmentDirections.allUsersFragmentToUserDetailsFragment(person.personId)
-            view.findNavController().navigate(direction)
+            //val direction = RoomDisplayAllUsersFragmentDirections.allUsersFragmentToUserDetailsFragment(person.personId)
+            //view.findNavController().navigate(direction)
         }
 
-        fun bind(item: AllPersons) {
+        fun bind(item: AllPhones) {
             binding.apply {
-                person = item
+                phone = item
                 executePendingBindings()
             }
         }
     }
 }
 
-private class PersonDiffCallback : DiffUtil.ItemCallback<AllPersons>() {
+private class PhonetDiffCallback : DiffUtil.ItemCallback<AllPhones>() {
 
-    override fun areItemsTheSame(oldItem: AllPersons, newItem: AllPersons): Boolean {
-        return oldItem.personId == newItem.personId
+    override fun areItemsTheSame(oldItem: AllPhones, newItem: AllPhones): Boolean {
+        return oldItem.userId == newItem.userId
     }
 
-    override fun areContentsTheSame(oldItem: AllPersons, newItem: AllPersons): Boolean {
+    override fun areContentsTheSame(oldItem: AllPhones, newItem: AllPhones): Boolean {
         return oldItem == newItem
     }
 }
