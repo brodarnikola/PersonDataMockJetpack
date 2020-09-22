@@ -1,10 +1,11 @@
-package com.vjezba.persondatamockjetpack
+package com.vjezba.persondatamockjetpack.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.vjezba.persondatamockjetpack.R
 
 class MainActivity : AppCompatActivity() {
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

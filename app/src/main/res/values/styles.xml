@@ -7,4 +7,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Theme.PersonData.NoActionBar"  parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.PersonData.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+
+    <style name="Theme.PersonData.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
