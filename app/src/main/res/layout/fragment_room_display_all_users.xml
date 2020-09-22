@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2018 Google LLC
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,18 +22,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/persons_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingEnd="@dimen/card_side_margin"
             android:paddingStart="@dimen/card_side_margin"
             android:paddingTop="@dimen/header_margin"
+            android:paddingEnd="@dimen/card_side_margin"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:spanCount="@integer/grid_columns"
             tools:context="com.vjezba.androidjetpackgithub.ui.activities.LanguagesActivity"
-            tools:listitem="@layout/list_item_room_display_all_users"/>
+            tools:listitem="@layout/list_item_room_display_all_users" />
+
+        <TextView
+            android:id="@+id/tvNoUserSaved"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="There is currently no user saved. Please save, add new user."
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:paddingStart="@dimen/margin_normal"
+            android:paddingEnd="@dimen/margin_normal"
+            android:layout_gravity="center"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="40dp"
+            android:tint="@android:color/white"
+            android:layout_gravity="bottom|right"
+            app:shapeAppearance="@style/ShapeAppearance.Sunflower.FAB"
+            app:srcCompat="@drawable/ic_plus" />
 
     </FrameLayout>
 

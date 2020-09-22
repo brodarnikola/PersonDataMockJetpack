@@ -16,22 +16,28 @@
 
 package com.vjezba.persondatamockjetpack.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.vjezba.domain.model.AllPersons
 import com.vjezba.domain.repository.RoomDisplayAllUsersRepository
+import kotlinx.coroutines.launch
 
 
 class PersonDetailsViewModel(
-    roomDisplayAllUsersRepository: RoomDisplayAllUsersRepository,
+    val roomDisplayAllUsersRepository: RoomDisplayAllUsersRepository,
     personId: Int
 ) : ViewModel() {
 
     //val isSavedLanguage = savedLanguagesRepository.isLanguageSaved(languagesId)
     val personDetails = roomDisplayAllUsersRepository.getPersonDetails(personId)
 
-    /*fun saveProgrammingLanguage() {
-        viewModelScope.launch {
-            savedLanguagesRepository.createSavedLanguage(languagesId)
-        }
-    }*/
+    suspend fun updateChangeUserDetails(personId: Int, name: String, description: String, address: String ) : Int {
+        return roomDisplayAllUsersRepository.changeUpdatePersonDetails(personId, name, description, address)
+    }
+
+    suspend fun deleteUser(personId: Int) : Int {
+        return roomDisplayAllUsersRepository.deleteUser(personId)
+    }
 
 }

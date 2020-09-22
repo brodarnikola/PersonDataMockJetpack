@@ -27,6 +27,7 @@ import com.vjezba.persondatamockjetpack.databinding.FragmentRoomDisplayAllUsersB
 import com.vjezba.persondatamockjetpack.ui.adapters.AllPersonsAdapter
 import com.vjezba.persondatamockjetpack.viewmodels.RoomDisplayAllUsersViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_room_display_all_users.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RoomDisplayAllUsersFragment : Fragment() {
@@ -55,10 +56,13 @@ class RoomDisplayAllUsersFragment : Fragment() {
     private fun subscribeUi(adapter: AllPersonsAdapter) {
         viewModel.allPersons.observe(viewLifecycleOwner,  Observer { plants ->
             if( plants.isNotEmpty() ) {
+                persons_list.visibility = View.VISIBLE
+                tvNoUserSaved.visibility = View.GONE
                 adapter.submitList(plants)
             }
             else {
-
+                persons_list.visibility = View.GONE
+                tvNoUserSaved.visibility = View.VISIBLE
             }
         })
     }

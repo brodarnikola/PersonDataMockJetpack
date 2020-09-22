@@ -17,31 +17,41 @@
 package com.vjezba.persondatamockjetpack.ui.fragments
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.vjezba.persondatamockjetpack.R
 import com.vjezba.persondatamockjetpack.databinding.FragmentRoomPersonDetailsBinding
+import com.vjezba.persondatamockjetpack.ui.activities.MainActivity
+import com.vjezba.persondatamockjetpack.ui.dialog.DeleteUser
+import com.vjezba.persondatamockjetpack.ui.dialog.RoomDeleteUserDialog
+import com.vjezba.persondatamockjetpack.ui.fragments.HomeFirstFragmentDirections.Companion.homeFragmentToRoomDisplayAllUsersFragment
 import com.vjezba.persondatamockjetpack.viewmodels.PersonDetailsViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_room_person_details.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+
 
 /**
  * A fragments representing a single Plant detail screen.
  */
-class RoomPersonDetailsFragment : Fragment() {
+class RoomPersonDetailsFragment : Fragment(), DeleteUser {
 
     private val args: RoomPersonDetailsFragmentArgs by navArgs()
 
-    /*private val languageDetailsViewModel: LanguageDetailsViewModel by viewModels {
-        InjectorUtils.provideLanguageDetailsViewModelFactory(requireActivity(), args.languagesId)
-    }*/
-
-    private val languageDetailsViewModel : PersonDetailsViewModel by viewModel {
+    private val personDetailsViewModel : PersonDetailsViewModel by viewModel {
         parametersOf( args.personId)
     }
 
@@ -57,7 +67,7 @@ class RoomPersonDetailsFragment : Fragment() {
             container,
             false
         ).apply {
-            viewModel = languageDetailsViewModel
+            viewModel = personDetailsViewModel
 
             lifecycleOwner = this@RoomPersonDetailsFragment
 
@@ -67,26 +77,64 @@ class RoomPersonDetailsFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
+    override fun onResume() {
+        super.onResume()
+        btnInsertUser.setOnClickListener {
+            updateChangeUserData()
+        }
+
+        btnDeleteUser.setOnClickListener {
+            val deleteUserDialog =
+                RoomDeleteUserDialog(args.personId, this@RoomPersonDetailsFragment)
+            deleteUserDialog.show(
+                (requireActivity() as MainActivity).supportFragmentManager,
+                "")
+        }
     }
 
-    private fun subscribeUi() {
-        languageDetailsViewModel.personDetails.observe(viewLifecycleOwner,  Observer { plants ->
-        })
+    private fun updateChangeUserData() {
+        lifecycleScope.launch {
+            val numberOfUpdateRows = personDetailsViewModel.updateChangeUserDetails(
+                args.personId,
+                etName.text.toString(),
+                etDescription.text.toString(),
+                etAddress.text.toString()
+            )
+            withContext(Dispatchers.Main) {
+                if (numberOfUpdateRows > 0) {
+                    val snackbar = Snackbar
+                        .make(coordinatorLayout, "Successfully updated", Snackbar.LENGTH_LONG)
+                    snackbar.show()
+                }
+                else{
+                    val snackbar = Snackbar
+                        .make(coordinatorLayout, "Update failed updated", Snackbar.LENGTH_LONG)
+                    snackbar.show()
+                }
+            }
+        }
     }
 
-
-
-    // FloatingActionButtons anchored to AppBarLayouts have their visibility controlled by the scroll position.
-    // We want to turn this behavior off to hide the FAB when it is clicked.
-    //
-    // This is adapted from Chris Banes' Stack Overflow answer: https://stackoverflow.com/a/41442923
-    private fun hideAppBarFab(fab: FloatingActionButton) {
-        //val params = fab.layoutParams as CoordinatorLayout.LayoutParams
-        //val behavior = params.behavior as FloatingActionButton.Behavior
-        //behavior.isAutoHideEnabled = false
-        fab.hide()
+    override fun deleteUser(personId: Int) {
+        lifecycleScope.launch {
+            val numberOfUpdateRows = personDetailsViewModel.deleteUser(
+                args.personId
+            )
+            withContext(Dispatchers.Main) {
+                if (numberOfUpdateRows > 0) {
+                    val direction =
+                        RoomPersonDetailsFragmentDirections.userDetailsFragmentToAllUsersFragment()
+                    findNavController().navigate(direction)
+                    Toast.makeText(requireContext(), "Successfully deleted", Toast.LENGTH_LONG)
+                        .show()
+                } else {
+                    val snackbar = Snackbar
+                        .make(coordinatorLayout, "Deleted failed", Snackbar.LENGTH_LONG)
+                    snackbar.show()
+                }
+            }
+        }
     }
+
 
 }

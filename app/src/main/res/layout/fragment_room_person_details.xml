@@ -26,6 +26,7 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
@@ -110,6 +111,26 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvAddress"/>
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDeleteUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DELETE USER"
+                    app:layout_constraintEnd_toStartOf="@+id/btnInsertUser"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etAddress" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnInsertUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SAVE CHANGES"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btnDeleteUser"
+                    app:layout_constraintTop_toBottomOf="@id/etAddress" />
+
+
                 <TextView
                     android:id="@+id/tvInsertPhoneNumber"
                     android:layout_width="0dp"
@@ -121,7 +142,7 @@
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/etAddress" />
+                    app:layout_constraintTop_toBottomOf="@id/btnInsertUser" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab"

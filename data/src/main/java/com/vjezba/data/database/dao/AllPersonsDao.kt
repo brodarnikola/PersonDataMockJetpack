@@ -34,6 +34,12 @@ interface AllPersonsDao {
     @Query("SELECT * FROM persons WHERE id = :personId")
     fun getPersonById(personId: Int): LiveData<AllPersonDb>
 
+    @Query("UPDATE persons SET name = :name, description = :description, address = :address  WHERE id = :personId")
+    suspend fun updateChangePersonDetails(personId: Int, name: String, description: String, address: String) : Int
+
+    @Query("DELETE FROM persons WHERE id = :personId")
+    suspend fun deleteUser(personId: Int) : Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(languages: List<AllPersonDb>)
 }

@@ -58,4 +58,12 @@ private  val dbMapper: DbMapper)
         return allPersons.getPersonById(personId).map {dbMapper.mapDbPersonToDomainPerson(it)}
     }
 
+    override suspend fun changeUpdatePersonDetails(personId: Int, name: String, description: String, address: String) : Int {
+       return allPersons.updateChangePersonDetails(personId, name, description, address) //.map {dbMapper.mapDbPersonToDomainPerson(it)}
+    }
+
+    override suspend fun deleteUser(personId: Int): Int {
+        return allPersons.deleteUser(personId)
+    }
+
 }
