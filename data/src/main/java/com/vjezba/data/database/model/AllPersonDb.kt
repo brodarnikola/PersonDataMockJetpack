@@ -23,10 +23,16 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "persons")
 data class AllPersonDb(
     @PrimaryKey @ColumnInfo(name = "id") val personId: Int,
-    val name: String,
-    val description: String,
-    val address: String = ""
+    var name: String,
+    var description: String,
+    var address: String = ""
 ) {
+
+    constructor(name: String, description: String, address: String) : this( 0, name, description, address) {
+        this.name = name
+        this.description = description
+        this.address = address
+    }
 
     override fun toString() = name
 }

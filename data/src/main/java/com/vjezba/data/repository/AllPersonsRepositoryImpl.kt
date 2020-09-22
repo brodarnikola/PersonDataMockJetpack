@@ -20,6 +20,7 @@ import androidx.lifecycle.map
 import androidx.lifecycle.LiveData
 import com.vjezba.data.database.dao.AllPersonsDao
 import com.vjezba.data.database.mapper.DbMapper
+import com.vjezba.data.database.model.AllPersonDb
 import com.vjezba.domain.model.AllPersons
 import com.vjezba.domain.repository.RoomDisplayAllUsersRepository
 
@@ -30,25 +31,6 @@ class AllPersonsRepositoryImpl  constructor(
     private val allPersons: AllPersonsDao,
 private  val dbMapper: DbMapper)
     : RoomDisplayAllUsersRepository   {
-
-    /*override fun getLanguages() = languages.getLanguages().map { dbMapper.mapDbLanguagesToDomainLanguages(it) }
-
-    override fun getOnlyMobilleProgrammingLanguages(onlyMobileProgrammingLanguages: String): LiveData<List<Languages>> {
-        return languages.getOnlyMobileProgrammingLanguages(onlyMobileProgrammingLanguages).map { dbMapper.mapDbLanguagesToDomainLanguages(it) }
-    }
-
-    override fun getLanguage(languagesId: Int) = languages.getLanguageRepo(languagesId).map { dbMapper.mapDbLanguageToDomainLanguage(it) }
-
-    companion object {
-
-        // For Singleton instantiation
-        @Volatile private var instance: LanguagesRepository? = null
-
-        fun getInstance(languages: LanguagesDao, dbMapper: DbMapper) =
-            instance ?: synchronized(this) {
-                instance ?: AllPersonsRepositoryImpl(languages, dbMapper).also { instance = it }
-            }
-    }*/
 
     override fun getAllPersons() : LiveData<List<AllPersons>> {
         return allPersons.getPersons().map {dbMapper.mapDbAllPersonsToDomainPersons(it)}
@@ -64,6 +46,15 @@ private  val dbMapper: DbMapper)
 
     override suspend fun deleteUser(personId: Int): Int {
         return allPersons.deleteUser(personId)
+    }
+
+    override suspend fun findLastUserId(): Long {
+        return allPersons.getLastPersonId()
+    }
+
+    override suspend fun addNewUser(newUser: AllPersons): Long {
+        val newUserDb = AllPersonDb(newUser.personId, newUser.name, newUser.description, newUser.address)
+        return allPersons.insertNewUser(newUserDb)
     }
 
 }

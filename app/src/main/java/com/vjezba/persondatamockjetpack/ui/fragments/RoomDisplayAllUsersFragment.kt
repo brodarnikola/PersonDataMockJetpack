@@ -22,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.vjezba.persondatamockjetpack.R
 import com.vjezba.persondatamockjetpack.databinding.FragmentRoomDisplayAllUsersBinding
 import com.vjezba.persondatamockjetpack.ui.adapters.AllPersonsAdapter
@@ -51,6 +52,18 @@ class RoomDisplayAllUsersFragment : Fragment() {
         subscribeUi(adapter)
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        addNewUser()
+    }
+
+    private fun addNewUser() {
+        fab.setOnClickListener {
+            val direction = RoomDisplayAllUsersFragmentDirections.allUsersFragmentToNewUserFragment()
+            findNavController().navigate(direction)
+        }
     }
 
     private fun subscribeUi(adapter: AllPersonsAdapter) {

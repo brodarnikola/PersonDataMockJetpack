@@ -40,6 +40,27 @@ interface AllPersonsDao {
     @Query("DELETE FROM persons WHERE id = :personId")
     suspend fun deleteUser(personId: Int) : Int
 
+
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(languages: List<AllPersonDb>)
+    suspend fun insertAll(users: List<AllPersonDb>)
+
+
+/*
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertNewUser(user: AllPersonDb)
+*/
+
+
+
+   /* @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(legoSet: LegoSet)*/
+
+
+    @Query("SELECT id FROM persons ORDER BY id DESC LIMIT 1")
+    fun getLastPersonId(): Long
+
+    @Insert
+    suspend fun insertNewUser(user: AllPersonDb): Long
 }
