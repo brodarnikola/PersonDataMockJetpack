@@ -23,7 +23,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -33,8 +32,7 @@ import com.vjezba.persondatamockjetpack.databinding.FragmentRoomPersonDetailsBin
 import com.vjezba.persondatamockjetpack.ui.activities.MainActivity
 import com.vjezba.persondatamockjetpack.ui.dialog.DeleteUser
 import com.vjezba.persondatamockjetpack.ui.dialog.RoomDeleteUserDialog
-import com.vjezba.persondatamockjetpack.ui.fragments.HomeFirstFragmentDirections.Companion.homeFragmentToRoomDisplayAllUsersFragment
-import com.vjezba.persondatamockjetpack.viewmodels.PersonDetailsViewModel
+import com.vjezba.persondatamockjetpack.viewmodels.RoomPersonDetailsViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_room_person_details.*
 import kotlinx.coroutines.Dispatchers
@@ -51,7 +49,7 @@ class RoomPersonDetailsFragment : Fragment(), DeleteUser {
 
     private val args: RoomPersonDetailsFragmentArgs by navArgs()
 
-    private val personDetailsViewModel : PersonDetailsViewModel by viewModel {
+    private val roomPersonDetailsViewModel : RoomPersonDetailsViewModel by viewModel {
         parametersOf( args.personId)
     }
 
@@ -67,7 +65,7 @@ class RoomPersonDetailsFragment : Fragment(), DeleteUser {
             container,
             false
         ).apply {
-            viewModel = personDetailsViewModel
+            viewModel = roomPersonDetailsViewModel
 
             lifecycleOwner = this@RoomPersonDetailsFragment
 
@@ -90,11 +88,17 @@ class RoomPersonDetailsFragment : Fragment(), DeleteUser {
                 (requireActivity() as MainActivity).supportFragmentManager,
                 "")
         }
+
+        fabAddNewPhone.setOnClickListener {
+            val direction =
+                RoomPersonDetailsFragmentDirections.userDetailsFragmentToAllPhonesFragment(args.personId)
+            findNavController().navigate(direction)
+        }
     }
 
     private fun updateChangeUserData() {
         lifecycleScope.launch {
-            val numberOfUpdateRows = personDetailsViewModel.updateChangeUserDetails(
+            val numberOfUpdateRows = roomPersonDetailsViewModel.updateChangeUserDetails(
                 args.personId,
                 etName.text.toString(),
                 etDescription.text.toString(),
@@ -117,7 +121,7 @@ class RoomPersonDetailsFragment : Fragment(), DeleteUser {
 
     override fun deleteUser(personId: Int) {
         lifecycleScope.launch {
-            val numberOfUpdateRows = personDetailsViewModel.deleteUser(
+            val numberOfUpdateRows = roomPersonDetailsViewModel.deleteUser(
                 args.personId
             )
             withContext(Dispatchers.Main) {

@@ -30,14 +30,16 @@
 
 package com.vjezba.persondatamockjetpack.di
 
-import com.vjezba.persondatamockjetpack.viewmodels.PersonAddViewModel
-import com.vjezba.persondatamockjetpack.viewmodels.PersonDetailsViewModel
+import com.vjezba.persondatamockjetpack.viewmodels.RoomDisplayAllPhonesViewModel
+import com.vjezba.persondatamockjetpack.viewmodels.RoomPersonAddViewModel
+import com.vjezba.persondatamockjetpack.viewmodels.RoomPersonDetailsViewModel
 import com.vjezba.persondatamockjetpack.viewmodels.RoomDisplayAllUsersViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val presentationModule = module {
   viewModel { RoomDisplayAllUsersViewModel(get()) }
-  viewModel { (personId : Int) -> PersonDetailsViewModel(get(), personId) }
-  viewModel { PersonAddViewModel(get()) }
+  viewModel { (personId : Int) -> RoomPersonDetailsViewModel(get(), personId) }
+  viewModel { RoomPersonAddViewModel(get()) }
+  viewModel { (personId : Int) -> RoomDisplayAllPhonesViewModel(get(), personId) }
 }

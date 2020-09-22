@@ -10,4 +10,5 @@ val databaseModule = module {
   single { AppDatabase.getInstance(androidContext()) }
 
   factory { get<AppDatabase>().allPersonDao() }
+  factory { get<AppDatabase>().allPhonesDao() }
 }

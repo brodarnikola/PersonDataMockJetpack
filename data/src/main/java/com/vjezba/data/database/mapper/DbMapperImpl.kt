@@ -32,6 +32,7 @@ package com.vjezba.data.database.mapper
 
 
 import com.vjezba.data.database.model.AllPersonDb
+import com.vjezba.data.database.model.AllPhonesDb
 import com.vjezba.domain.model.*
 
 class DbMapperImpl : DbMapper {
@@ -58,6 +59,19 @@ class DbMapperImpl : DbMapper {
                 description,
                 address
             )
+        }
+    }
+
+    override fun mapDbAllPhonesToDomainPhones(phones: List<AllPhonesDb>): List<AllPhones> {
+        return phones.map {
+            with(it) {
+                AllPhones(
+                    phoneId,
+                    phone,
+                    operater,
+                    userId
+                )
+            }
         }
     }
 
