@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/room_display_all_users_fragment">
+
+    <fragment
+        android:id="@+id/room_display_all_users_fragment"
+        android:name="com.vjezba.persondatamockjetpack.ui.fragments.RoomDisplayAllUsersFragment"
+        android:label="Room all users"
+        tools:layout="@layout/fragment_room_display_all_users">
+
+        <action
+            android:id="@+id/all_users_fragment_to_user_details_fragment"
+            app:destination="@id/room_user_details_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/all_users_fragment_to_new_user_fragment"
+            app:destination="@id/room_new_user_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/room_new_user_fragment"
+        android:name="com.vjezba.persondatamockjetpack.ui.fragments.RoomAddPersonFragment"
+        android:label="Room new user"
+        tools:layout="@layout/fragment_add_person">
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/room_user_details_fragment"
+        android:name="com.vjezba.persondatamockjetpack.ui.fragments.RoomPersonDetailsFragment"
+        android:label="Room details user"
+        tools:layout="@layout/fragment_room_person_details">
+
+        <argument
+            android:name="personId"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/user_details_fragment_to_all_users_fragment"
+            app:destination="@id/room_display_all_users_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/user_details_fragment_to_all_phones_fragment"
+            app:destination="@id/all_phones_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/all_phones_fragment"
+        android:name="com.vjezba.persondatamockjetpack.ui.fragments.RoomDisplayAllPhoneFragment"
+        android:label="Room all phones from user"
+        tools:layout="@layout/fragment_room_display_all_phone">
+
+        <argument
+            android:name="personId"
+            app:argType="integer" />
+
+    </fragment>
+
+</navigation>

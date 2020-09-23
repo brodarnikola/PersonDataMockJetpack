@@ -1,26 +1,26 @@
 [
   {
     "personId": 1,
-    "name": "Kotlin",
-    "description": "Brave, Smart",
-    "address": "JetBrains"
+    "name": "Drazen Petrovic",
+    "description": "Awesome, peaceful, Smart, Fast, Unstopablle",
+    "address": "USA Washington"
   },
   {
     "personId": 2,
-    "name": "Java",
-    "description": "Inteligien, Beauty",
+    "name": "Oliver Dragojevic",
+    "description": "Peaceful, gently, intelligent, awesome singer",
     "address": "Sun Microsystems"
   },
   {
     "personId": 3,
-    "name": "C++",
-    "description": "Shy",
-    "address": "Bjarne Stroustrup"
+    "name": "Michael Jordan",
+    "description": "Brave, Smart, Fast, Unstoppable",
+    "address": "USA Washington"
   },
   {
     "personId": 4,
-    "name": "Swift",
-    "description": "LovelyPerson",
+    "name": "Toni Kukoc",
+    "description": "Awesome player, brave, good shotter, fast",
     "address": "Apple Inc"
   }
 ]
