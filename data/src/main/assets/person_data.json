@@ -3,13 +3,13 @@
     "personId": 1,
     "name": "Drazen Petrovic",
     "description": "Awesome, peaceful, Smart, Fast, Unstopablle",
-    "address": "USA Washington"
+    "address": "Croatia Zagreb"
   },
   {
     "personId": 2,
     "name": "Oliver Dragojevic",
     "description": "Peaceful, gently, intelligent, awesome singer",
-    "address": "Sun Microsystems"
+    "address": "Croatia Split"
   },
   {
     "personId": 3,
@@ -21,6 +21,6 @@
     "personId": 4,
     "name": "Toni Kukoc",
     "description": "Awesome player, brave, good shotter, fast",
-    "address": "Apple Inc"
+    "address": "Croaita, Split"
   }
 ]
