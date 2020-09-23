@@ -40,8 +40,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
-            android:inputType="text"
-            android:imeOptions="actionDone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvPhone"/>
@@ -92,7 +90,7 @@
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:spanCount="@integer/grid_columns"
             tools:context="com.vjezba.androidjetpackgithub.ui.activities.LanguagesActivity"
-            tools:listitem="@layout/list_item_room_display_all_users"
+            tools:listitem="@layout/list_item_room_display_all_phones"
 
             app:layout_constraintTop_toBottomOf="@+id/btnInsertPhone"
             app:layout_constraintBottom_toBottomOf="parent"/>
