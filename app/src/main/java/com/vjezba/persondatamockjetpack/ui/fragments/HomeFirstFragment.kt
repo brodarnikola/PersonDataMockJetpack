@@ -32,6 +32,8 @@ class HomeFirstFragment : Fragment() {
         super.onResume()
 
         btnMockApi.setOnClickListener {
+            val direction = HomeFirstFragmentDirections.homeFragmentToMockDisplayAllUsersFragment()
+            findNavController().navigate(direction)
         }
 
         btnRoom.setOnClickListener {
