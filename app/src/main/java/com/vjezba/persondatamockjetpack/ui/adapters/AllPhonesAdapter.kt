@@ -48,21 +48,6 @@ class AllPhonesAdapter( val clickListener: (AllPhones) -> Unit) : ListAdapter<Al
     class LanguageViewHolder(
         private val binding: ListItemRoomDisplayAllPhonesBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        init {
-            binding.setClickListenerLanguages {
-                binding.phone?.let { language ->
-                    navigateToLanguage(language, it)
-                }
-            }
-        }
-
-        private fun navigateToLanguage(
-            person: AllPhones,
-            view: View
-        ) {
-            //val direction = RoomDisplayAllUsersFragmentDirections.allUsersFragmentToUserDetailsFragment(person.personId)
-            //view.findNavController().navigate(direction)
-        }
 
         fun bind(item: AllPhones, clickListener: (AllPhones) -> Unit) {
             binding.apply {
