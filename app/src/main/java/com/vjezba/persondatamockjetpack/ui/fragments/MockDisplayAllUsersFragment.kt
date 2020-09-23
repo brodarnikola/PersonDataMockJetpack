@@ -17,23 +17,22 @@
 package com.vjezba.persondatamockjetpack.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.vjezba.persondatamockjetpack.databinding.FragmentMockDisplayAllUsersBinding
+import com.vjezba.persondatamockjetpack.mock.LoginResponse
+import com.vjezba.persondatamockjetpack.mock.NetworkClient
 import com.vjezba.persondatamockjetpack.ui.adapters.AllPersonsAdapter
-import com.vjezba.persondatamockjetpack.viewmodels.RoomDisplayAllUsersViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_mock_display_all_users.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MockDisplayAllUsersFragment : Fragment() {
-
-
-    private val viewModel : RoomDisplayAllUsersViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,23 +47,32 @@ class MockDisplayAllUsersFragment : Fragment() {
         val adapter =
             AllPersonsAdapter()
         binding.personList.adapter = adapter
-        subscribeUi(adapter)
+        //subscribeUi(adapter)
 
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        addNewUser()
+        addNewUserS()
     }
 
-    private fun addNewUser() {
-        fab.setOnClickListener {
-            //val direction = RoomDisplayAllUsersFragmentDirections.allUsersFragmentToNewUserFragment()
-            //findNavController().navigate(direction)
-        }
-    }
+    private fun addNewUserS() {
+        NetworkClient.create().login().enqueue(object: Callback<List<LoginResponse>> {
+            override fun onFailure(call: Call<List<LoginResponse>>, t: Throwable) {
+                Log.d("Error",t.toString())
+                Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
+            }
 
+            override fun onResponse(call: Call<List<LoginResponse>>, response: Response<List<LoginResponse>>) {
+
+                //Log.d("aa", "Owner action status: ${assinedUsers.joinToString { "-" + it.name + ", " + it.ownerActionStatus + ", " + it.isVendor  }}")
+                Log.d("Success","AAAAAA: " + response.body()?.joinToString { it.name + "-" + it.address + "\n" }  )
+                Toast.makeText(requireContext(), "Success: ${response.body()}", Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+/*
     private fun subscribeUi(adapter: AllPersonsAdapter) {
         viewModel.allPersons.observe(viewLifecycleOwner,  Observer { plants ->
             if( plants.isNotEmpty() ) {
@@ -77,6 +85,6 @@ class MockDisplayAllUsersFragment : Fragment() {
                 tvNoUserSaved.visibility = View.VISIBLE
             }
         })
-    }
+    }*/
 
 }

@@ -95,4 +95,10 @@ dependencies {
     // PAGING
     implementation "androidx.paging:paging-runtime:$pagingVersion"
 
+
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpLoggingVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
+
 }
