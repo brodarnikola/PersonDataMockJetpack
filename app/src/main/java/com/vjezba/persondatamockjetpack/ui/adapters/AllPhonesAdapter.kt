@@ -79,7 +79,7 @@ class AllPhonesAdapter( val clickListener: (AllPhones) -> Unit) : ListAdapter<Al
 private class PhonetDiffCallback : DiffUtil.ItemCallback<AllPhones>() {
 
     override fun areItemsTheSame(oldItem: AllPhones, newItem: AllPhones): Boolean {
-        return oldItem.userId == newItem.userId
+        return oldItem.phoneId == newItem.phoneId
     }
 
     override fun areContentsTheSame(oldItem: AllPhones, newItem: AllPhones): Boolean {

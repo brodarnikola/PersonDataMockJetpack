@@ -12,7 +12,7 @@ import org.koin.dsl.module
 val repositoryModule = module {
 
   factory<DbMapper> { DbMapperImpl() }
-  factory<RoomDisplayAllUsersRepository> { AllPersonsRepositoryImpl(get(), get()) }
+  factory<RoomDisplayAllUsersRepository> { AllPersonsRepositoryImpl(get(), get(), get()) }
   factory<RoomDisplayAllPhonesRepository> { AllPhonesRepositoryImpl(get(), get()) }
 
   /*factory<DbMapper> { DbMapperImpl() }

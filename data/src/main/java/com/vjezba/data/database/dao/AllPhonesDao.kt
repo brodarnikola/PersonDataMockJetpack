@@ -61,4 +61,8 @@ interface AllPhonesDao {
     suspend fun deletePhone(phone: AllPhonesDb)
 
 
+    @Query("DELETE FROM phones WHERE userId = :personId")
+    suspend fun deleteAllPhonesForThisPersonId(personId: Int)
+
+
 }

@@ -19,6 +19,7 @@ package com.vjezba.data.repository
 import androidx.lifecycle.map
 import androidx.lifecycle.LiveData
 import com.vjezba.data.database.dao.AllPersonsDao
+import com.vjezba.data.database.dao.AllPhonesDao
 import com.vjezba.data.database.mapper.DbMapper
 import com.vjezba.data.database.model.AllPersonDb
 import com.vjezba.domain.model.AllPersons
@@ -29,7 +30,8 @@ import com.vjezba.domain.repository.RoomDisplayAllUsersRepository
  */
 class AllPersonsRepositoryImpl  constructor(
     private val allPersons: AllPersonsDao,
-private  val dbMapper: DbMapper)
+    private val allPhones: AllPhonesDao,
+    private  val dbMapper: DbMapper)
     : RoomDisplayAllUsersRepository   {
 
     override fun getAllPersons() : LiveData<List<AllPersons>> {
@@ -45,6 +47,7 @@ private  val dbMapper: DbMapper)
     }
 
     override suspend fun deleteUser(personId: Int): Int {
+        allPhones.deleteAllPhonesForThisPersonId(personId)
         return allPersons.deleteUser(personId)
     }
 
